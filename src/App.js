@@ -12,8 +12,13 @@ function App() {
   },[])
 
   async function handleAddRepository() {
-    setRepository([...repositories, `Novo projeto ${Date.now()}`]);
-
+   const response = await api.post('repositories',{
+     title: `Novo Projeto ${Date.now()}`,
+     url:"https://github.com/GyAlves/Desafio-2.git",
+     techs:['Express,NodeJS,ReactJS']
+   });
+   const repository = response.data;
+   setRepository([...repositories,repository])
   }
 
   async function handleRemoveRepository(id) {
