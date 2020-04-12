@@ -12,8 +12,9 @@ function App() {
   },[])
 
   async function handleAddRepository() {
+  
    const response = await api.post('repositories',{
-     title: `Novo Projeto ${Date.now()}`,
+     title: `Novo Repositório ${Date.now()}`,
      url:"https://github.com/GyAlves/Desafio-2.git",
      techs:['Express,NodeJS,ReactJS']
    });
@@ -22,18 +23,22 @@ function App() {
   }
 
   async function handleRemoveRepository(id) {
-    // TODO
+    await api.delete(`repositories/${id}`);
+    setRepository(repositories.filter(repository => repository.id !== id ))    
   }
+
 
   return (
     <div>
       <ul data-testid="repository-list">
-  {repositories.map(repository =><li key={repository.id}>{repository.title}</li>)}
-        <li>
-          <button onClick={() => handleRemoveRepository(1)}>
-            Remover
-          </button>
-        </li>
+          {repositories.map(repository=>
+            <li key={repository.id}>
+              {repository.title}
+              <button onClick={() =>handleRemoveRepository(repository.id)}>
+                Remover
+              </button>
+            </li> 
+           )}
       </ul>
 
       <button onClick={handleAddRepository}>Adicionar</button>
