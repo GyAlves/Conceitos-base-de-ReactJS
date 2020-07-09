@@ -24,7 +24,7 @@ Criando aplicação mobile em ReactJS que faz parte dos desafios do Bootcamp GoS
   yarn install
   
   // 3 - Na pasta do backend rode o servidor 
-  yarn dev
+  yarn start
   
   // O servidor deverá abrir no seu navegador
 
